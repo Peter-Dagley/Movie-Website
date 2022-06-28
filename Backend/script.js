@@ -4,6 +4,7 @@ import axios from "axios";
 const getMovieList = () => {
     axios.get("http://localhost:4000/movielist")
         .then((response) => {
+            // Need to add function here.
             console.log(response.data);
         }).catch((err) => {
             console.log(err);
@@ -14,6 +15,7 @@ const getMovieList = () => {
 const getComingSoon = () => {
     axios.get("http://localhost:4000/comingsoon")
         .then((response) => {
+            // Need to add function here.
             console.log(response.data);
         }).catch((err) => {
             console.log(err);
@@ -24,6 +26,7 @@ const getComingSoon = () => {
 const getLocationList = () => {
     axios.get("http://localhost:4000/locationlist")
         .then((response) => {
+            // Need to add function here.
             console.log(response.data);
         }).catch((err) => {
             console.log(err);
