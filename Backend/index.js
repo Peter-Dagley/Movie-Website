@@ -52,6 +52,13 @@ mongoose.connect
     }
 )
 
+app.get
+('/', function(request, response)
+    {
+        fs.readFile('./public/index.html', 'utf8', function (error,data){response.send(data)})
+    }
+)
+
 app.use(express.json())
 app.use(express.static('script'));
 
