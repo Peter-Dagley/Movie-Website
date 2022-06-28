@@ -30,9 +30,9 @@ const locationSchema = new Schema
         'city': String,
         'opening times': Number,
         'telephone': String,
+        'movies': [Number]
     }
 )
-
 
 const Movie = mongoose.model('Movie', movieSchema)
 const Location = mongoose.model('Location', locationSchema)
@@ -51,13 +51,6 @@ mongoose.connect
         }
     }
 )
-
-// app.get
-// ('/', function(request, response)
-//     {
-//         fs.readFile('./public/index.html', 'utf8', function (error,data){response.send(data)})
-//     }
-// )
 
 app.use(express.json())
 app.use(express.static('script'));
@@ -149,5 +142,60 @@ app.get
     }
 )
 
+app.get
+('/location/select/:id', function(request, response)
+    {
+        let id = request.params.id
+        let movies = []
+
+        Movie.find
+        ({}, (error, movielist) =>
+            {
+                if (error)
+                {
+                    console.log('Error location/select/' + id + ' Movie.find: ' + error)
+                }
+                else
+                {
+                    movielist.forEach
+                    ((movie) =>
+                        {    
+                            movies[movie.id] = movie.title
+                        }
+                    )
+                }
+            }
+        )
+
+        Location.find
+        ({"id":id}, (error, locations) =>
+            {
+                let location = ''
+
+                if (error)
+                {
+                    console.log('Error location/select/' + id + ': ' + error)
+                    location = {"id":"Error location/select: " + id + " : " + error}
+                }
+                else
+                {
+                    let loc = locations[0]
+                    let mov = []
+                    
+                    for (let i in loc.movies)
+                    {
+                        
+                        let id = loc.movies[i]
+                        mov.push({"id":id, "title":movies[id]})
+                    }
+
+                    location = [{"id": loc.id, "city": loc.city, "movies":mov}]
+                }
+
+                response.send(location)
+            }
+        )
+    }
+)
 
 app.listen(4000);
