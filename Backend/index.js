@@ -1,11 +1,19 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-var fs = require('fs')
-const { response } = require('express')
+const express = require('express');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+var fs = require('fs');
+const { response } = require('express');
+const cors = require('cors'); // new
+const bodyParser = require('body-parser') // new
 
 
-const app = express()
+const app = express() // new
+app.use(cors({origin:true})) // new
+
+app.use(bodyParser.json()); // new
+app.use(bodyParser.urlencoded({ // new
+    extended: true
+}));
 
 const uri = 'mongodb://localhost:27017/qacinemas';
 let opts = { useNewUrlParser: true }
