@@ -25,9 +25,11 @@ const Trending = () => {
     // Page Display
     return (
         <>
-            <div>
-                <h4 className='text1'>{title}</h4>
-            </div>
+        {data.map(({id, title}) =>
+        <div id={id} className='card'>
+            <p>{id} {title}</p> 
+        </div>
+         )}
         </>
     )
 
