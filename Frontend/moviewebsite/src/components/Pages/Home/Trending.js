@@ -26,7 +26,7 @@ const Trending = () => {
     return (
         <>
         {data.map(({id, title}) =>
-        <div id={id} className='card'>
+        <div key={id} id={id} className='card'>
             <p>{id} {title}</p> 
         </div>
          )}
