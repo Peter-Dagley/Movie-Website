@@ -11,9 +11,7 @@ const ListingsGallery = () => {
             <h1 className='text1'>Listings Gallery</h1>
           </div>
 
-          <br></br>
-
-          <div className='container'>
+          <div className='container' id='header'>
             <Listings />
           </div>
 
