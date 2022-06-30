@@ -8,7 +8,7 @@ const Listings = () => {
 
         // Read All
         const getListings = () => {
-            axios.get("http://localhost:4000/movielist")
+            axios.get("http://localhost:4000/nowshowing")
                 .then((response) => {
                     setData(response.data);
                     console.log(response.data)
