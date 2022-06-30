@@ -69,7 +69,7 @@ app.get
 ('/movielist', function(request, response)
     {
         Movie.find
-        ({'release date':''}, (error, movies) =>
+        ({}, (error, movies) =>
             {
                 let list = []
 
@@ -94,6 +94,34 @@ app.get
     }
 )
 
+app.get
+('/nowshowing', function(request, response)
+    {
+        Movie.find
+        ({'release date':''}, (error, movies) =>
+            {
+                let list = []
+
+                if (error)
+                {
+                    console.log('Error movielist: ' + error)
+                    list.push({"id":0, "title":'Error movielist: ' + error})
+                }
+                else
+                {
+                    movies.forEach
+                    ((movie) =>
+                        {
+                           list.push({"id":movie.id, "title":movie.title})
+                        }
+                    )
+                }
+
+                response.send(list)
+            }
+        ).sort('title')
+    }
+)
 app.get
 ('/comingsoon', function(request, response)
     {
