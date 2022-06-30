@@ -29,7 +29,7 @@ const ReplyOutput = () => {
         addReplies()
     }, [postReply])
   
-    // Display all replies on page
+    // Display all replies on page -- object would contain an ID and CONTENT
     // WIP
     return (
     <>
