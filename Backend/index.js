@@ -37,7 +37,7 @@ const locationSchema = new Schema
         'city': String,
         'opening times': Number,
         'telephone': String,
-        'movies': [Number]
+        'movies': [Object]
     }
 )
 
@@ -232,6 +232,27 @@ app.get
 app.get
 ('/locationlist', function(request, response)
     {
+        let movies = []
+
+        Movie.find
+        ({}, (error, movielist) =>
+            {
+                if (error)
+                {
+                    console.log('Error locationlist' + id + ' Movie.find: ' + error)
+                }
+                else
+                {
+                    movielist.forEach
+                    ((movie) =>
+                        {    
+                            movies[movie.id] = movie.title
+                        }
+                    )
+                }
+            }
+        )
+
         Location.find
         ({}, (error, locations) =>
             {
@@ -247,7 +268,17 @@ app.get
                     locations.forEach
                     ((location) =>
                         {
-                           list.push({"id":location.id, "city":location.city})
+                            let mov = []
+
+                            location.movies.forEach
+                            ((movie) => 
+                                {
+                                    mov.push({"id":movie.id, "title":movies[movie.id], "times":movie.times})
+                                }
+                            )
+                            
+
+                            list.push({"id":location.id, "city":location.city, "movies":mov})
                         }
                     )
                 }
