@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import ReplyOutput, { viewReplies } from './ReplyOutput';
-import { useState, useEffect } from 'react';
-import { props, useRef } from 'react';
+import { useState } from 'react';
+
 
 // Will probably need functions to add replies to a specific discussion ? 
 // Atm it would just function as a pure comment board
@@ -27,7 +26,7 @@ const ReplyInput = (fetchData, fetch) => {
   
   return (
     <>
-    <input value={textInput} placeholder='Reply here...' onChange={(e) => setTextInput(e.target.value)}></input>
+    <input className='replyInput' value={textInput} placeholder='Reply here...' onChange={(e) => setTextInput(e.target.value)}></input>
 
     <button type='text' id='submitReply' onClick={postReply}>Submit</button>
     </>

@@ -1,6 +1,7 @@
 import React from 'react'
 import ReplyInput from './ReplyInput'
 import ReplyOutput from './ReplyOutput'
+import './DiscussionBoardStyles.css'
 
 const DiscussionBoard = () => {
   return (
