@@ -3,19 +3,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 var fs = require('fs')
 const { response } = require('express')
-const cors = require('cors'); // new
-const bodyParser = require('body-parser') // new
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
 
 const app = express()
-app.use(cors({origin:true})) // new
+app.use(cors({origin:true}))
 
-app.use(bodyParser.json()); // new
-app.use(bodyParser.urlencoded({ // new
-    extended: true
-}));
-
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 const movieSchema = new Schema 
@@ -37,7 +33,7 @@ const locationSchema = new Schema
         'city': String,
         'opening times': Number,
         'telephone': String,
-        'movies': [Object]
+        'sessions': [Object]
     }
 )
 
@@ -83,7 +79,7 @@ app.get
                     movies.forEach
                     ((movie) =>
                         {
-                           list.push({"id":movie.id, "title":movie.title})
+                           list.push(movie)
                         }
                     )
                 }
@@ -122,6 +118,7 @@ app.get
         ).sort('title')
     }
 )
+
 app.get
 ('/comingsoon', function(request, response)
     {
@@ -296,17 +293,8 @@ app.get
                     locations.forEach
                     ((location) =>
                         {
-                            let mov = []
-
-                            location.movies.forEach
-                            ((movie) => 
-                                {
-                                    mov.push({"id":movie.id, "title":movies[movie.id], "times":movie.times})
-                                }
-                            )
                             
-
-                            list.push({"id":location.id, "city":location.city, "movies":mov})
+                            list.push(location)
                         }
                     )
                 }
