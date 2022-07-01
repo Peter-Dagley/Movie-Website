@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 const ReplyOutput = () => {
     const [replies, setReplies] = useState([]);
+    const [fetch, setFetch] = useState(false);
    
     // Add replys to page
     const viewReplies = () => {
@@ -14,9 +15,13 @@ const ReplyOutput = () => {
             });
     };
 
+    const fetchData = () => {
+        setFetch(replies)
+    }
+
     useEffect(() => {
         viewReplies()
-    }, [])
+    }, [fetchData])
   
     // Display all replies on page -- object would contain an ID and CONTENT
     return (
