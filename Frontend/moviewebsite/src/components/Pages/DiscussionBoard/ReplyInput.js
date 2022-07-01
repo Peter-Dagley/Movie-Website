@@ -7,7 +7,7 @@ import { props, useRef } from 'react';
 // Will probably need functions to add replies to a specific discussion ? 
 // Atm it would just function as a pure comment board
 
-// const ReplyInput = () => {
+const ReplyInput = () => {
 //   const textInput = useRef(textInputRef);
 
 //   // API to add reply to database
@@ -24,13 +24,13 @@ import { props, useRef } from 'react';
 //       });
 //     }}
   
-//   return (
-//     <>
-//     <input ref={textInputRef} placeholder='Reply here...'></input>
+  return (
+    <>
+    {/* <input ref={textInputRef} placeholder='Reply here...'></input>
 
-//     <button type='text' id='submitReply' onClick={postReply}>Submit</button>
-//     </>
-//   )
-// }
+    <button type='text' id='submitReply' onClick={postReply}>Submit</button> */}
+    </>
+  )
+}
 
-// export default ReplyInput
+export default ReplyInput
