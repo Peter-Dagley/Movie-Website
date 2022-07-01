@@ -5,6 +5,7 @@ var fs = require('fs')
 const { response } = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const { nextTick } = require('process')
 
 
 const app = express()
@@ -37,8 +38,18 @@ const locationSchema = new Schema
     }
 )
 
+// Testing replies collection
+const repliesSchema = new Schema
+(
+    {
+        '_id': Number,
+        'content': String
+    }
+)
+
 const Movie = mongoose.model('Movie', movieSchema)
 const Location = mongoose.model('Location', locationSchema)
+const Replies = mongoose.model('Replies', repliesSchema)
 
 const uri = 'mongodb://localhost:27017/qacinemas';
 let opts = { useNewUrlParser: true }
@@ -360,5 +371,41 @@ app.get
         )
     }
 )
+
+// Reply builder for replies
+let replyBuilder = (replyContent, replyID) => {
+    let reply = {
+        _id : replyID,
+        content : replyContent
+    }
+    return reply;
+}
+
+// Global variable for id
+let id = 1;
+
+// Post reply function
+app.post("/replies/createReply", (req, res, next) => {
+    let newReply = replyBuilder(req.body.content, parseInt(id));
+    id++;
+    // let newReply = req.body;
+    Replies.create(newReply)
+      .then((result) => res.status(201).send(result))
+      .catch((err) => next(err));
+});
+
+// View all replies
+app.get("/replies/readReplies", (req, res, next) => {
+    Replies.find()
+      .then((results) => res.send(results))
+      .catch((err) => next(err));
+  });
+
+// Delete a reply
+app.delete("/replies/delete/:id", (req, res, next) => {
+    Replies.findByIdAndDelete(req.params.id)
+    .then(() => res.status(200).send())
+    .catch((err) => next(err));
+  });
 
 app.listen(4000);
