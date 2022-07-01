@@ -5,20 +5,9 @@ import { useState, useEffect } from 'react';
 const ReplyOutput = () => {
     const [replies, setReplies] = useState([]);
    
-    // API to add reply to database
-    // WIP
-    const postReply = () => {
-        axios.post("") // API to post replies
-            .then((response) => {
-                addReply(response);
-                console.log(response)
-            });
-    };
-
     // Add replys to page
-    // WIP
-    const addReplies = () => {
-        axios.get("") // API to get replies
+    const viewReplies = () => {
+        axios.get("http://localhost:4000/replies/readReplies")
             .then((response) => {
                 setReplies(response.data);
                 console.log(response.data)
@@ -26,16 +15,15 @@ const ReplyOutput = () => {
     };
 
     useEffect(() => {
-        addReplies()
-    }, [postReply])
+        viewReplies()
+    }, [])
   
     // Display all replies on page -- object would contain an ID and CONTENT
-    // WIP
     return (
     <>
-    {replies.map(({id, content}) =>
-        <div id={id} className='card'>
-            <p>{id} {content}</p> 
+    {replies.map(({_id, content}) =>
+        <div key={_id} id={_id} className='card'>
+            <p>{_id}: {content}</p> 
         </div>
          )}
     </>

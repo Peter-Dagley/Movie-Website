@@ -1,4 +1,6 @@
 import React from 'react'
+import ReplyInput from './ReplyInput'
+import ReplyOutput from './ReplyOutput'
 
 const DiscussionBoard = () => {
   return (
@@ -14,10 +16,12 @@ const DiscussionBoard = () => {
 
           <div className='container'>
             <h2 className='text1'>Comments</h2>
+            <ReplyOutput />
           </div>
 
           <div className='container'>
             <h2 className='text1'>Reply</h2>
+            <ReplyInput />
           </div>
 
       </div>
