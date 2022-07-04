@@ -8,7 +8,7 @@ const Listings = () => {
 
         // Read All
         const getListings = () => {
-            axios.get("http://localhost:4000/nowshowing")
+            axios.get("http://localhost:4000/movielist")
                 .then((response) => {
                     setData(response.data);
                     console.log(response.data)
@@ -37,11 +37,26 @@ const Listings = () => {
             <>
             <div className='container'>
             <input id='searchMovies' placeholder='Search for a movie...' onChange={(e) => getMovie(e.target.value)}/><br></br>
-                {data.map(({id, title}) =>
-                        <div key={id} id={id} className='card'>
-                        <p>{id} {title}</p> 
+            {data.map(({id, title, starring, genre, rating}) =>
+                <div key={id} id={id} className='card'>
+                    <div className='card-header'>
+                        <div className='card-header-title'>
+                            <p>{id} {title}</p>
                         </div>
-                        )} 
+                    </div>
+                    <div className='card-content'>
+                        <div className='content'>
+                            <p>Starring: {starring}</p>
+                        </div>
+                        <div className='content'>
+                            <p>Genre: {genre}</p>
+                        </div>
+                        <div className='content'>
+                            <p>Rating: {rating}</p>
+                        </div>
+                    </div> 
+                </div>
+            )} 
             </div>
             </>
         )
@@ -51,11 +66,27 @@ const Listings = () => {
                 <div className='container' id='header'>
                     <input id='searchMovies' placeholder='Search for a movie...' onChange={(e) => getMovie(e.target.value)}/><br></br>
                     <br/>
-                    {search.map(({id, title}) =>
+                  
+                    {search.map(({id, title, starring, genre, rating}) =>
                             <div key={id} id={id} className='card'>
-                            <p>{id} {title}</p> 
+                                <div className='card-header'>
+                                    <div className='card-header-title'>
+                                        <p>{id} {title}</p>
+                                    </div>
+                                </div>
+                                <div className='card-content'>
+                                    <div className='content'>
+                                        <p>Starring: {starring}</p>
+                                    </div>
+                                    <div className='content'>
+                                        <p>Genre: {genre}</p>
+                                    </div>
+                                    <div className='content'>
+                                        <p>Rating: {rating}</p>
+                                    </div>
+                                </div> 
                             </div>
-                            )} 
+                    )}
                 </div>
                 </>
             )
