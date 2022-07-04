@@ -16,12 +16,12 @@ const DiscussionBoard = () => {
           <br></br>
 
           <div className='container'>
-            <h2 className='text1'>Comments</h2>
+            <h2 className='text1'>Posts</h2>
             <ReplyOutput />
           </div>
 
           <div className='container'>
-            <h2 className='text1'>Reply</h2>
+            <h2 className='text1'>Leave a Comment</h2>
             <ReplyInput />
           </div>
 

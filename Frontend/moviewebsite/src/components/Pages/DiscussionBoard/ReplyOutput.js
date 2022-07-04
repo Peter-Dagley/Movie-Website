@@ -23,12 +23,21 @@ const ReplyOutput = () => {
         viewReplies()
     }, [fetchData])
   
-    // Display all replies on page -- object would contain an ID and CONTENT
+    // Display all replies on page -- object would contain an ID, TITLE and COMMENTS
     return (
     <>
-    {replies.map(({_id, content}) =>
+    {replies.map(({_id, title, content}) =>
         <div key={_id} id={_id} className='card'>
-            <p>{_id}: {content}</p> 
+            <div className='card-header'>
+                <div className='card-header-title'>
+                    <p>{_id} {title}</p>
+                </div>
+            </div>
+            <div className='card-content'>
+                <div className='content'>
+                    {content.map((content) => <li>{content}</li>)}
+                </div>
+            </div> 
         </div>
          )}
     </>
