@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import ScreenImg1 from "Frontend/moviewebsite/src/Img/Screen-1.jpg"
-import ScreenImg2 from "Frontend/moviewebsite/src/Img/Screen-2.jpg"
-import ScreenImg3 from "Frontend/moviewebsite/src/Img/Screen-3.jpg"
-import ScreenImg4 from "Frontend/moviewebsite/src/Img/Screen-4.jpg"
+import ScreenImg1 from "../../Images/Img/Screen-1.jpg"
+import ScreenImg2 from "../../Images/Img/Screen-2.jpg"
+import ScreenImg3 from "../../Images/Img/Screen-3.jpg"
+import ScreenImg4 from "../../Images/Img/Screen-4.jpg"
 
 
 const Screens = () => {

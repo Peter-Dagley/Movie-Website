@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-// import AboutImage from "Frontend/moviewebsite/src/Img/about-1.jpg"
+import AboutImage from "../../Images/Img/about-1.jpg"
 
 const AboutContent = () => {
   return (
@@ -15,7 +15,7 @@ const AboutContent = () => {
                         It has emerged as one of the UK's top film distribution companies in recent years. <br />
                         <br />
                         <div className="column">
-                            {/* <img src={AboutImage} alt="cinema picture" width="555" /> */}
+                            <img src={AboutImage} alt="cinema picture" width="555" />
                         </div>
 
                         The staff at QA Cinemas takes pride in showing the latest movies like Elvis, Thor: Love and thunder, Minions: The Rise of Gru and Jurassic World: Dominion in theatres.
