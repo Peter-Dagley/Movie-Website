@@ -23,6 +23,7 @@ const movieSchema = new Schema
         'release date': String,
         'genre': String,
         'rating': String,
+        'thumbnail': String
     }
 )
 
