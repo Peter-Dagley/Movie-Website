@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-// import ScreenImg1 from "/Users/naimaafrah/Desktop/Movie-Website-dev/Frontend/moviewebsite/src/Img/Sceen-1.jpg"
-// import ScreenImg2 from "/Users/naimaafrah/Desktop/Movie-Website-dev/Frontend/moviewebsite/src/Screen-2.jpg"
-// import ScreenImg3 from "/Users/naimaafrah/Desktop/Movie-Website-dev/Frontend/moviewebsite/src/Img/Screen-3.jpg"
-// import ScreenImg4 from "/Users/naimaafrah/Desktop/Movie-Website-dev/Frontend/moviewebsite/src/Img/Screen-4.jpg"
+import ScreenImg1 from "Frontend/moviewebsite/src/Img/Screen-1.jpg"
+import ScreenImg2 from "Frontend/moviewebsite/src/Img/Screen-2.jpg"
+import ScreenImg3 from "Frontend/moviewebsite/src/Img/Screen-3.jpg"
+import ScreenImg4 from "Frontend/moviewebsite/src/Img/Screen-4.jpg"
 
 const Screens = () => {
   return (
