@@ -1,11 +1,19 @@
+import { useState } from 'react'
 import Moment from 'moment'
+import LocationBooking from './LocationBooking'
 
-const LocationCity = ({movies, location}) => {
+const LocationCity = (props) => {
 
-    let city = '';
+    const [page, setPage] = useState('')
+    const [session, setSession] = useState({})
 
-    let tdate = Moment().format("YYYY-MMM-DD").toUpperCase()
-    let ddate = Moment().format("ddd Do MMM YYYY").toUpperCase()
+
+    let movies = props.movies
+    let location = props.location
+
+    let date = '2022-06-30'
+    let tdate = Moment(date).format("YYYY-MM-DD")
+    let ddate = Moment(date).format("ddd Do MMM YYYY").toUpperCase()
 
     let tsessions = []
     
@@ -17,12 +25,18 @@ const LocationCity = ({movies, location}) => {
         }
     }
 
-    return  (
-                <div>
-                    {location.city}
-                    {tsessions.map
-                    (sessions =>
-                        (
+    if (page === 'booking')
+    {
+        return <LocationBooking session={session} prices={props.prices} />
+    }
+    else
+    {
+        return  (
+            <div align="center">
+                {location.city}
+                {tsessions.map
+                (sessions =>
+                    (
                     <table className="location-movie-details" cellPadding="5" cellSpacing="0" border="0">
                     <tr rowSpan="100%"><td>poster</td></tr>
                     <tr><td><strong>{movies[sessions.movie].title}</strong></td></tr>
@@ -31,19 +45,35 @@ const LocationCity = ({movies, location}) => {
                     <tr><td>{ddate}</td></tr>
                             {
                                 sessions.times.map
-                                (session =>
+                                (time =>
                                     (
-                                        <input type="button" className="location-session" value={session} onclick=""></input>
+                                        <input type="button" className="location-time" value={time} onClick=
+                                                                    {() => 
+                                                                        {
+                                                                            setSession
+                                                                            (
+                                                                                {time:time
+                                                                                ,movie:{id:sessions.movie, title:movies[sessions.movie].title}
+                                                                                ,cinema:sessions.cinema
+                                                                                ,date:sessions.date
+                                                                                ,location:{id:location.id, city:location.city}
+                                                                                }
+                                                                            );
+                                                                            setPage('booking')
+                                                                        }
+                                                                    }
+                                                                    >
+                                                                    </input>
                                     )
-
                                 )
                             }
                     </table>
-                        )
                     )
-                    }
-                </div>
-            )
+                )
+                }
+            </div>
+                )
+        }
 }
 
 export default LocationCity

@@ -61,8 +61,17 @@
     width:40%;
 }
 
-.location-session
+.location-time
 {
+    border:none;
+    background-color:maroon;
+    border-radius:5px;
+    color:skyblue;
     margin:0.5vw;
     width:7vw;
+    cursor:pointer;
+}
+.location-time:hover
+{
+    background-color:crimson;
 }
