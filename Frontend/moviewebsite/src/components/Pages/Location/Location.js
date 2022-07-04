@@ -8,6 +8,7 @@ const Location = () => {
   const [locations, setLocations] = useState([])
   const [prices, setPrices] = useState([])
   const [movies, setMovies] = useState([])
+  const [moviesCurrent, setMoviesCurrent] = useState([])
 
 
   const getLocations = () => 
@@ -44,6 +45,22 @@ const Location = () => {
         })
   }
 
+  const getMoviesCurrent = () => 
+  {
+    axios.get("http://localhost:4000/nowshowing")
+        .then((response) => {
+
+            let movielist = []
+
+            for (let i in response.data)
+            {
+              let movie = response.data[i]
+              movielist.push(movie)
+            }
+
+            setMoviesCurrent(movielist)
+        })
+  }
   const getPrices = () => 
   {
     axios.get("http://localhost:4000/prices")
@@ -64,11 +81,12 @@ const Location = () => {
   {
       getLocations()
       getMovies()
+      getMoviesCurrent()
       getPrices()
   }, [])
 
   let initial = true
-  return <LocationSelect locations={locations} movies={movies} prices={prices} initial={initial} />
+  return <LocationSelect locations={locations} movies={movies} current={moviesCurrent} prices={prices} initial={initial} />
   
 
 }
