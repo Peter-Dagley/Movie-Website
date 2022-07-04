@@ -43,7 +43,8 @@ const repliesSchema = new Schema
 (
     {
         '_id': Number,
-        'content': String
+        'title': String,
+        'content': [Array]
     }
 )
 
@@ -373,9 +374,10 @@ app.get
 )
 
 // Reply builder for replies
-let replyBuilder = (replyContent, replyID) => {
+let replyBuilder = (replyContent, discTitle, replyID) => {
     let reply = {
         _id : replyID,
+        title: discTitle,
         content : replyContent
     }
     return reply;
@@ -384,15 +386,24 @@ let replyBuilder = (replyContent, replyID) => {
 // Global variable for id
 let id = 1;
 
-// Post reply function
+// Post discussion function
 app.post("/replies/createReply", (req, res, next) => {
-    let newReply = replyBuilder(req.body.content, parseInt(id));
+    let newReply = replyBuilder(req.body.content, req.body.title, parseInt(id));
     id++;
-    // let newReply = req.body;
     Replies.create(newReply)
       .then((result) => res.status(201).send(result))
       .catch((err) => next(err));
 });
+
+// Add reply function
+app.patch("/replies/addReply/:id", (req, res, next) => {
+    const id = req.params.id;
+    const elementToPush = req.body.content;
+    const body = { $push: {content: elementToPush}};
+    Replies.findByIdAndUpdate(id, body)
+        .then((result) => res.status(201).send(result))
+        .catch((err) => next(err));
+})
 
 // View all replies
 app.get("/replies/readReplies", (req, res, next) => {
