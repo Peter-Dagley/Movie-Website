@@ -38,6 +38,25 @@ const locationSchema = new Schema
     }
 )
 
+const bookingSchema = new Schema 
+(
+    {
+        'location': Number,
+        'date': Date,
+        'screen': Number,
+        'seat': String,
+        'reference': String
+    }
+)
+
+const priceSchema = new Schema 
+(
+    {
+        'type': String,
+        'price': Number
+    }
+)
+
 // Testing replies collection
 const repliesSchema = new Schema
 (
@@ -50,6 +69,8 @@ const repliesSchema = new Schema
 
 const Movie = mongoose.model('Movie', movieSchema)
 const Location = mongoose.model('Location', locationSchema)
+const Booking = mongoose.model('Booking', bookingSchema)
+const Price = mongoose.model('Price', priceSchema)
 const Replies = mongoose.model('Replies', repliesSchema)
 
 const uri = 'mongodb://localhost:27017/qacinemas';
@@ -373,6 +394,112 @@ app.get
     }
 )
 
+
+
+app.get
+('/bookings/', function(request, response)
+    {
+        Booking.find
+        ({}, (error, bookinglist) =>
+            {
+                let bookings = []
+
+                if (error)
+                {
+                    console.log('Error bookings:' + error)
+                    bookings.push({"location":"Error bookings: " + error})
+                }
+                else
+                {
+                    bookings.push(bookinglist)
+                }
+
+                response.send(bookings)
+            }
+        )
+    }
+)
+
+app.get
+('/bookings/select/location/:id', function(request, response)
+    {
+        let id = request.params.id
+
+        Booking.find
+        ({"location":id}, (error, bookinglist) =>
+            {
+                let bookings = []
+
+                if (error)
+                {
+                    console.log('Error bookings/select/location/' + id + ' ' + error)
+                    bookings.push({"location":"Error bookings/select/location/" + id + " + error"})
+                }
+                else
+                {
+                    bookings.push(bookinglist)
+                }
+
+                response.send(bookings)
+            }
+        )
+    }
+)
+
+app.get
+('/prices', function(request, response)
+    {
+        Price.find
+        ({}, (error, pricelist) =>
+            {
+                let prices = []
+
+                if (error)
+                {
+                    console.log('Error prices ' + error)
+                    prices.push({"error":"Error prices" + error})
+                }
+                else
+                {
+                    for (let i in pricelist)
+                    {
+                        prices.push(pricelist[i])
+                    }
+                }
+
+                response.send(prices)
+            }
+        )
+    }
+)
+
+app.post
+('booking/add', function(request, response)
+    {
+        let booking = request.body.content
+
+        Console.log('booking ' + booking)
+
+        Booking.insertOne(booking, (error) =>
+            {
+                if (error)
+                {
+                    Console.log('Error booking/add ' + error)
+                    response.send('Error booking/add ' + error)
+                }
+                else
+                {
+                    response.send(0)
+                }
+            }
+        )
+    }
+)
+
+
+// Global variable for id
+let id = 1;
+
 // Reply builder for replies
 let replyBuilder = (replyContent, discTitle, replyID) => {
     let reply = {
@@ -383,8 +510,6 @@ let replyBuilder = (replyContent, discTitle, replyID) => {
     return reply;
 }
 
-// Global variable for id
-let id = 1;
 
 // Post discussion function
 app.post("/replies/createReply", (req, res, next) => {
