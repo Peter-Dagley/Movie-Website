@@ -11,13 +11,26 @@ const LocationSelect = (props) => {
     let locations = props.locations
     let prices = props.prices
     let movies = props.movies;
+    let current = props.current
 
-    const TakeBookingDetails = (details, id) =>
-    {
-        /*location = locations[id]*/
-        setBookingDetails(details)
-        setPage('booking')
-    }
+    let movielist = []
+    let side = 'right'
+    current.forEach
+    (movie => 
+        {
+            if (side === 'right')
+            {
+                movielist.push(<table><tr><td>{movie.title}</td><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')}></img></td></tr></table>)
+                side = 'left'
+            }
+            else
+            {
+                movielist.push(<table><tr><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')}></img></td><td>{movie.title}</td></tr></table>)
+                side = 'right'
+
+            }
+        }
+    )
 
 
     if (page === 'city')
@@ -27,7 +40,7 @@ const LocationSelect = (props) => {
     else
     {
         return (
-            <div align="center">
+        <div align="center">
             <select onChange={(event) => {setLocation(locations[event.target.value]);setPage('city')}}>
                 <option value="">Please select a city</option>
                 {locations.map
@@ -38,7 +51,17 @@ const LocationSelect = (props) => {
                     )
                 }
             </select>
+            <div>
+                {movielist.map
+                    ((movie) =>
+                        (
+                            movie
+                        )
+
+                    )
+                }
             </div>
+        </div>
         )
     }
 }

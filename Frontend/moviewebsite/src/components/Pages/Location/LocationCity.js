@@ -19,7 +19,7 @@ const LocationCity = (props) => {
     
     for (let i in location.sessions)
     {
-         if (location.sessions[i].date === tdate)
+        if (location.sessions[i].date === tdate)
         {
             tsessions.push(location.sessions[i])
         }
@@ -37,12 +37,15 @@ const LocationCity = (props) => {
                 {tsessions.map
                 (sessions =>
                     (
-                    <table className="location-movie-details" cellPadding="5" cellSpacing="0" border="0">
-                    <tr rowSpan="100%"><td>poster</td></tr>
-                    <tr><td><strong>{movies[sessions.movie].title}</strong></td></tr>
-                    <tr><td>starring {movies[sessions.movie].starring}</td></tr>
-                    <tr><td>run time {movies[sessions.movie].runtime}</td></tr>
-                    <tr><td>{ddate}</td></tr>
+                    <table className="location-movie-details" cellPadding="5" cellSpacing="0" border="2">
+                    <tr>
+                        <td><img src={require('../../Images/' + sessions.movie + '.jpg')} height="200vh" width="140vw"></img></td>
+                        <td>
+                            <table>
+                            <tr><td><strong>{movies[sessions.movie].title}</strong></td></tr>
+                            <tr><td>starring {movies[sessions.movie].starring}</td></tr>
+                            <tr><td>run time {movies[sessions.movie].runtime}</td></tr>
+                            <tr><td>{ddate}</td></tr>
                             {
                                 sessions.times.map
                                 (time =>
@@ -67,6 +70,9 @@ const LocationCity = (props) => {
                                     )
                                 )
                             }
+                            </table>
+                        </td>
+                    </tr>
                     </table>
                     )
                 )
