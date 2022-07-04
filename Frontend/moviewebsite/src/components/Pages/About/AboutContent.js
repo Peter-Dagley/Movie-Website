@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-// import AboutImage from "/Users/naimaafrah/Desktop/Movie-Website-dev/Frontend/moviewebsite/src/Img/about1.jpg"
+// import AboutImage from "Frontend/moviewebsite/src/Img/about-1.jpg"
 
 const AboutContent = () => {
   return (
