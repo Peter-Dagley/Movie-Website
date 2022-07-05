@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha --recursive testing --reporter=nyan --exit",
+    "test": "mocha testing --reporter=nyan --exit",
     "coverage": "nyc npm test"
   },
   "author": "",
