@@ -4,15 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "test": "mocha testing --reporter=nyan --exit",
+    "coverage": "nyc npm test"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "mocha": "^10.0.0",
     "mongoose": "^6.4.1",
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "nyc": "^15.1.0"
   }
 }
