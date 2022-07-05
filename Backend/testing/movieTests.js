@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const server = require("../index.js");
 
-// Testing read methods of all the movies
+// Movies Tests
 describe("Movie API Testing", () => {
     
     it("gets /movielist list", (done) => {
