@@ -21,8 +21,11 @@ const movieSchema = new Schema
         'id':Number,
         'title': String,
         'release date': String,
+        'starring': String,
         'genre': String,
+        'runtime': Number,
         'rating': String,
+        'thumbnail': String
     }
 )
 
@@ -62,7 +65,8 @@ const repliesSchema = new Schema
 (
     {
         '_id': Number,
-        'content': String
+        'content': String,
+        'content': [Array]
     }
 )
 
@@ -155,7 +159,7 @@ app.get
                         movies.forEach
                         ((movie) =>
                             {
-                                list.push({"id":movie.id, "title":movie.title})
+                                list.push(movie)
                             }
                         )
                     }
@@ -191,7 +195,7 @@ app.get
                         movies.forEach
                         ((movie) =>
                             {
-                                list.push({"id":movie.id, "title":movie.title})
+                                list.push(movie)
                             }
                         )
                     }
