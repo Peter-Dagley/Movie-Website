@@ -23,7 +23,6 @@ const movieSchema = new Schema
         'release date': String,
         'genre': String,
         'rating': String,
-        'thumbnail': String
     }
 )
 
@@ -43,7 +42,7 @@ const bookingSchema = new Schema
 (
     {
         'location': Number,
-        'date': Date,
+        'date': String,
         'screen': Number,
         'seat': String,
         'reference': String
@@ -63,8 +62,7 @@ const repliesSchema = new Schema
 (
     {
         '_id': Number,
-        'title': String,
-        'content': [Array]
+        'content': String
     }
 )
 
@@ -96,29 +94,38 @@ app.use(express.json())
 app.use(express.static('script'));
 
 app.get
-('/movielist', function(request, response)
+('/movielist', function(request, response, error)
     {
         Movie.find
         ({}, (error, movies) =>
             {
-                let list = []
-
                 if (error)
                 {
                     console.log('Error movielist: ' + error)
-                    list.push({"id":0, "title":'Error movielist: ' + error})
+                    response.send([{"id":0, "title":'Error movielist: ' + error}])
                 }
                 else
                 {
-                    movies.forEach
-                    ((movie) =>
-                        {
-                           list.push(movie)
-                        }
-                    )
+                    if (movies == '')
+                    {
+                        response.send([{"id":0, "title":"Error movielist: there is no movie collection, please create one"}])
+                    }
+                    else
+                    {
+                        let list = []
+
+                        movies.forEach
+                        ((movie) =>
+                            {
+                                list.push(movie)
+                            }
+                        )
+
+                        response.send(list)
+                    }
                 }
 
-                response.send(list)
+
             }
         ).sort('title')
     }
@@ -139,12 +146,19 @@ app.get
                 }
                 else
                 {
-                    movies.forEach
-                    ((movie) =>
-                        {
-                           list.push({"id":movie.id, "title":movie.title})
-                        }
-                    )
+                    if (movies == '')
+                    {
+                        list.push({"id":0, "title":'Error movielist: there is no movie collection, please create one'})
+                    }
+                    else
+                    {
+                        movies.forEach
+                        ((movie) =>
+                            {
+                                list.push({"id":movie.id, "title":movie.title})
+                            }
+                        )
+                    }
                 }
 
                 response.send(list)
@@ -168,12 +182,19 @@ app.get
                 }
                 else
                 {
-                    movies.forEach
-                    ((movie) =>
-                        {
-                           list.push({"id":movie.id, "title":movie.title})
-                        }
-                    )
+                    if (movies == '')
+                    {
+                        list.push({"id":0, "title":'Error comingsoon: There is no movie collection, please create one'})
+                    }
+                    else
+                    {
+                        movies.forEach
+                        ((movie) =>
+                            {
+                                list.push({"id":movie.id, "title":movie.title})
+                            }
+                        )
+                    }
                 }
 
                 response.send(list)
@@ -265,7 +286,6 @@ app.get
                 }
                 else
                 {
-                    console.log('movies' + movies)
                     if (movies == '')
                     {
                         list.push("No movie title found using the search criteria: " + title)
@@ -291,27 +311,6 @@ app.get
 app.get
 ('/locationlist', function(request, response)
     {
-        let movies = []
-
-        Movie.find
-        ({}, (error, movielist) =>
-            {
-                if (error)
-                {
-                    console.log('Error locationlist' + id + ' Movie.find: ' + error)
-                }
-                else
-                {
-                    movielist.forEach
-                    ((movie) =>
-                        {    
-                            movies[movie.id] = movie.title
-                        }
-                    )
-                }
-            }
-        )
-
         Location.find
         ({}, (error, locations) =>
             {
@@ -324,13 +323,19 @@ app.get
                 }
                 else
                 {
-                    locations.forEach
-                    ((location) =>
-                        {
-                            
-                            list.push(location)
-                        }
-                    )
+                    if (locations == '')
+                    {
+                        list.push({"id":0, "city":'Error locationlist: there is no location collection, please create one'})
+                    }
+                    else
+                    {
+                        locations.forEach
+                        ((location) =>
+                            {    
+                                list.push(location)
+                            }
+                        )
+                    }
                 }
 
                 response.send(list)
@@ -377,16 +382,26 @@ app.get
                 else
                 {
                     let loc = locations[0]
-                    let mov = []
+                    let sessions = []
                     
-                    for (let i in loc.movies)
+                    for (let i in loc.sessions)
                     {
+                        let session = loc.sessions[i]
+                        let id = loc.sessions[i].movie
                         
-                        let id = loc.movies[i]
-                        mov.push({"id":id, "title":movies[id]})
+                        if (movies[id])
+                        {
+                            session.movie = {"id":id, "title":movies[id]}
+                        }
+                        else
+                        {
+                            session.movie = {"id":id, "title":'Movie id: ' + id + ' cannot be found on the movie collection' }
+                        }
+
+                        sessions.push(session)
                     }
 
-                    location = [{"id": loc.id, "city": loc.city, "movies":mov}]
+                    location = {"id": loc.id, "city": loc.city, "sessons":sessions}
                 }
 
                 response.send(location)
@@ -412,7 +427,10 @@ app.get
                 }
                 else
                 {
-                    bookings.push(bookinglist)
+                    for (let i in bookinglist)
+                    {
+                        bookings.push(bookinglist[i])
+                    }
                 }
 
                 response.send(bookings)
@@ -502,34 +520,24 @@ app.post
 let id = 1;
 
 // Reply builder for replies
-let replyBuilder = (replyContent, discTitle, replyID) => {
+let replyBuilder = (replyContent, replyID) => {
     let reply = {
         _id : replyID,
-        title: discTitle,
         content : replyContent
     }
     return reply;
 }
 
 
-// Post discussion function
+// Post reply function
 app.post("/replies/createReply", (req, res, next) => {
-    let newReply = replyBuilder(req.body.content, req.body.title, parseInt(id));
+    let newReply = replyBuilder(req.body.content, parseInt(id));
     id++;
+    // let newReply = req.body;
     Replies.create(newReply)
       .then((result) => res.status(201).send(result))
       .catch((err) => next(err));
 });
-
-// Add reply function
-app.patch("/replies/addReply/:id", (req, res, next) => {
-    const id = req.params.id;
-    const elementToPush = req.body.content;
-    const body = { $push: {content: elementToPush}};
-    Replies.findByIdAndUpdate(id, body)
-        .then((result) => res.status(201).send(result))
-        .catch((err) => next(err));
-})
 
 // View all replies
 app.get("/replies/readReplies", (req, res, next) => {
