@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Moment from 'moment'
 import LocationConfirm from './LocationConfirm'
 
 const LocationBooking = ({session, prices}) => {
@@ -62,7 +63,7 @@ const LocationBooking = ({session, prices}) => {
 
     if (page === 'confirm')
     {
-        return <LocationConfirm booking={booking} />
+        return <LocationConfirm booking={booking} session={session} prices={prices} />
     }
     else
     {
@@ -71,7 +72,7 @@ const LocationBooking = ({session, prices}) => {
             <table cellSpacing="0" cellPadding="0" border="0">
                 <tr><td colSpan="100%">{session.location.city}</td></tr>
                 <tr><td style={{width:'8vw'}}>Movie</td><td>{session.movie.title}</td></tr>
-                <tr><td>Date</td>{session.date}<td></td></tr>
+                <tr><td>Date</td>{Moment(session.date).format("ddd Do MMM YYYY")}<td></td></tr>
                 <tr><td>Cinema</td>{session.cinema}<td></td></tr>
                 <tr><td>Time</td>{session.time}<td></td></tr>
                 <tr><td>Adults</td><td><input type="text" value={adultsInput} onChange={(e) => setAdultsInput(e.target.value)}></input></td></tr>
@@ -94,6 +95,10 @@ const LocationBooking = ({session, prices}) => {
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
                         </select>
                     </td>
                 </tr>
