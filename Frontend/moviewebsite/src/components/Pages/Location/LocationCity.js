@@ -7,22 +7,25 @@ const LocationCity = (props) => {
     const [page, setPage] = useState('')
     const [session, setSession] = useState({})
 
-
     let movies = props.movies
     let location = props.location
 
-    let date = '2022-06-30'
-    let tdate = Moment(date).format("YYYY-MM-DD")
-    let ddate = Moment(date).format("ddd Do MMM YYYY").toUpperCase()
+    let tdate = Moment().format("YYYY-MM-DD")
+    let ddate = Moment().format("ddd Do MMM YYYY")
 
     let tsessions = []
-    
+
     for (let i in location.sessions)
     {
         if (location.sessions[i].date === tdate)
         {
             tsessions.push(location.sessions[i])
         }
+    }
+
+    if (tsessions.length === 0)
+    {
+        tsessions.push({"date": tdate, "cinema":0, "movie":0, "times":['none']})
     }
 
     if (page === 'booking')

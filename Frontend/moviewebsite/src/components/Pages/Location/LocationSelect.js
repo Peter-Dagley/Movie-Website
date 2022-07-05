@@ -4,7 +4,6 @@ import LocationCity from './LocationCity.js'
 
 const LocationSelect = (props) => {
 
-    const [details, setBookingDetails] = useState({})
     const [location, setLocation] = useState({})
     const [page, setPage] = useState('')
 
@@ -15,23 +14,32 @@ const LocationSelect = (props) => {
 
     let movielist = []
     let side = 'right'
+
+  
     current.forEach
     (movie => 
         {
-            if (side === 'right')
+            if (movie.id !== 0)
             {
-                movielist.push(<table><tr><td>{movie.title}</td><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')}></img></td></tr></table>)
-                side = 'left'
+                if (side === 'right')
+                {
+                    movielist.push(<table><tr><td>{movie.title}</td><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')} alt={movie.title}></img></td></tr></table>)
+                    side = 'left'
+                }
+                else
+                {
+                    movielist.push(<table><tr><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')} alt={movie.title}></img></td><td>{movie.title}</td></tr></table>)
+                    side = 'right'
+                }
             }
             else
             {
-                movielist.push(<table><tr><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')}></img></td><td>{movie.title}</td></tr></table>)
-                side = 'right'
-
+                movielist.push(<div>{movie.title}</div>)
             }
+
         }
     )
-
+    
 
     if (page === 'city')
     {
