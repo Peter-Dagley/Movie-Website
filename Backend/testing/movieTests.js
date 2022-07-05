@@ -6,12 +6,10 @@ chai.use(chaiHttp);
 
 const server = require("../index.js");
 
-const Index = require("../index.js");
-
 // Testing read methods of all the movies
-mocha.describe("Movie API Testing", () => {
+describe("Movie API Testing", () => {
     
-    mocha.it("gets /movielist list", (done) => {
+    it("gets /movielist list", (done) => {
         chai
             .request(server)
             .get("/movielist")
@@ -22,7 +20,7 @@ mocha.describe("Movie API Testing", () => {
         return done();
     })
 
-    mocha.it("gets /nowshowing list", (done) => {
+    it("gets /nowshowing list", (done) => {
         chai
             .request(server)
             .get("/nowshowing")
@@ -33,7 +31,7 @@ mocha.describe("Movie API Testing", () => {
         return done();
     })
 
-    mocha.it("gets /comingsoon list", (done) => {
+    it("gets /comingsoon list", (done) => {
         chai
             .request(server)
             .get("/comingsoon")
@@ -44,7 +42,7 @@ mocha.describe("Movie API Testing", () => {
         return done();
     })
 
-    mocha.it("gets movie by id", (done) => {
+    it("gets movie by id", (done) => {
         let id = 101;
         chai
             .request(server)
@@ -67,7 +65,7 @@ mocha.describe("Movie API Testing", () => {
         return done();
     })
 
-    mocha.it("gets movie by genre", (done) => {
+    it("gets movie by genre", (done) => {
         let genre = "western";
         chai
             .request(server)
@@ -90,7 +88,7 @@ mocha.describe("Movie API Testing", () => {
         return done();
     })
 
-    mocha.it("gets movie by title", (done) => {
+    it("gets movie by title", (done) => {
         let title = "The Magnificent Seven";
         chai
             .request(server)
