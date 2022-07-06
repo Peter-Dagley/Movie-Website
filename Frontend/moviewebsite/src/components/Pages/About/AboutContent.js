@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import AboutImage from "../../Images/Img/about-1.jpg"
-import About from "../Pages/About.js"
+
 const AboutContent = () => {
   return (
     <div>
