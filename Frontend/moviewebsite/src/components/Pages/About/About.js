@@ -1,13 +1,22 @@
-import React from "react";
-import AboutContent from "./AboutContent";
+import React from 'react'
+
+import './myStylesheet.css'
+
+function Stylesheet () {
+
+return (
+
+<div>
+
+<h1 className= 'primary'></h1>
+
+
+</div>
+
+)
+
+}
 
 
 
-
-const About = () => {
-    return (
-        <AboutContent />
-    );
-
-};
-export default About;
+export default About
