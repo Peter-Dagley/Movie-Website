@@ -5,11 +5,14 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
 const server = require("../index.js");
+const { application } = require("express");
 
 // Bookings Tests
-describe("Bookings API Testing", () => {
-    
-    it("gets /bookings list", (done) => {
+mocha.describe("Bookings API Testing", () => {
+
+    console.log("test started1");
+
+    mocha.it("gets /bookings list", (done) => {
         chai
             .request(server)
             .get("/bookings")
@@ -20,7 +23,7 @@ describe("Bookings API Testing", () => {
         return done();
     })
 
-    it("gets booking by id", (done) => {
+    mocha.it("gets booking by id", (done) => {
         let id = 1;
         chai
             .request(server)
@@ -36,6 +39,8 @@ describe("Bookings API Testing", () => {
             });
         return done();
     })
-
+    
     // Needs post booking method test here
+
+    after(() => {server.close();});
 })

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Location = require("../models/locationModels");
+const Movie = require("../models/movieModels")
 
 router.get
 ('/locationlist', function(request, response)
