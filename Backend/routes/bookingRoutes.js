@@ -55,25 +55,15 @@ router.get
 )
 
 router.post
-('booking/add', function(request, response)
+('/booking/add', function(request, response)
     {
         let booking = request.body.content
 
-        Console.log('booking ' + booking)
+        console.log('booking location' + booking.locationi)
 
-        Booking.insertOne(booking, (error) =>
-            {
-                if (error)
-                {
-                    Console.log('Error booking/add ' + error)
-                    response.send('Error booking/add ' + error)
-                }
-                else
-                {
-                    response.send(0)
-                }
-            }
-        )
+    	Booking.create(booking)
+      	.then((result) => res.status(201).send(result))
+      	.catch((error) => console.log('Error booking/add ' + error))
     }
 )
 
