@@ -1,30 +1,43 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Moment from 'moment'
 import LocationBooking from './LocationBooking'
+import LocationCity from './LocationCity'
 
-const LocationConfirm = ({booking, session, prices}) =>{
+const LocationConfirm = ({movies, booking, session, location, prices}) =>{
 
     const [confirm, setConfirm] = useState(<div></div>)
     const [page, setPage] = useState('')
 
-    const addBooking = () => 
+    const addBooking = (booking) => 
     {
-      axios.get("http://localhost:4000/booking/add")
-          .then
+        /*
+            Add the booking
+        */
+        axios.post("http://localhost:4000/booking/add", {content: booking})
+        .then
             ((response) => 
                 {
-                    console.log('add boooking')
+                    console.log('Booking  Status (Ref: ' + booking.reference + ') ' + response.statusText)
+                }
+            )
+        .catch
+            ((error) => 
+                {
+                    console.log('Error LocationConfirm() booking/add: ' + error)
                 }
             )
     }
 
     const getBookings = () => 
     {
+    /*
+        Check to see if the booking already exists
+    */
         axios.get("http://localhost:4000/bookings")
         .then
         ((response) => 
             {
-                console.log('boookings')
                 let bookinglist = []
                 let book = {location:'', date:'', cinema:'', time:'', seat:'', adults:'', children:''}
             
@@ -83,14 +96,26 @@ const LocationConfirm = ({booking, session, prices}) =>{
                     (
                         <div>
                             <div>Booking already exists, click 'back' for a new booking</div>
-                                <div><input type="button" value="back" onClick={() => {setPage('booking')}}></input></div>
-                            </div>
+                            <div><input type="button" className="location-button" value="back" onClick={() => {setPage('booking')}}></input></div>
+                        </div>
                     )
                 }
                 else
                 {   
                     setPage('')
-                    setConfirm(<div>Booking confirmed Enjoy the movie</div>)
+
+                    addBooking
+                            ( 
+                                {"location":booking.location.id
+                                ,"date":booking.date
+                                ,"cinema":booking.cinema
+                                ,"time":booking.time
+                                ,"seat":booking.seat
+                                ,"reference":booking.location.city + booking.date + booking.time + booking.seat
+                                }
+                            )
+                    
+                    setConfirm(<div><div>Booking confirmed Enjoy the movie</div><div><input type="button" className="location-button" value="new booking" onClick={() => {setPage('new')}}></input></div></div>)
                 }
             }
         )
@@ -104,22 +129,27 @@ const LocationConfirm = ({booking, session, prices}) =>{
 
     if (page === 'booking')
     {
-        return <LocationBooking session={session} prices={prices}/>
+        return <LocationBooking movies={movies} location={location} session={session} prices={prices} />
+    }
+    else if(page === 'new')
+    {
+        return <LocationCity movies={movies} location={location} prices={prices} />
+
     }
     else
     {
         return (
             <div align="center">
                 <table>
-                    <tr><td>Location</td><td>{booking.location.city}</td></tr>
-                    <tr><td>Movie</td><td>{booking.movie.title}</td></tr>
-                    <tr><td>Date</td><td>{booking.date}</td></tr>
-                    <tr><td>Time</td><td>{booking.time}</td></tr>
-                    <tr><td>Cinema</td><td>{booking.cinema}</td></tr>
-                    <tr><td>Adults</td><td>{booking.adults}</td></tr>
-                    <tr><td>Children</td><td>{booking.children}</td></tr>
-                    <tr><td>Seats</td><td>{booking.seat}</td></tr>
-                    <tr><td>Total</td><td>£{booking.total}</td></tr>
+                    <tr><td className="location-city-title" colspan="100%">{booking.location.city}</td></tr>
+                    <tr><td className="location-label">Movie</td><td className="location-data">{booking.movie.title}</td></tr>
+                    <tr><td className="location-label">Date</td><td className="location-data">{Moment(booking.date).format("ddd Do MMM YYYY")}</td></tr>
+                    <tr><td className="location-label">Time</td><td className="location-data">{booking.time}</td></tr>
+                    <tr><td className="location-label">Cinema</td><td className="location-data">{booking.cinema}</td></tr>
+                    <tr><td className="location-label">Adults</td><td className="location-data">{booking.adults}</td></tr>
+                    <tr><td className="location-label">Children</td><td className="location-data">{booking.children}</td></tr>
+                    <tr><td className="location-label">Seats</td><td className="location-data">{booking.seat}</td></tr>
+                    <tr><td className="location-label">Total</td><td className="location-data">£{booking.total}</td></tr>
                 </table>
                 {confirm}
         </div>

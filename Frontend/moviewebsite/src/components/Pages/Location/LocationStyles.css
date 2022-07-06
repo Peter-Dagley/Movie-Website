@@ -9,7 +9,8 @@
 }
 .location-city-title
 {
-    color:yellow;
+    color:maroon;
+    text-shadow:2px 2px skyblue;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size:4vw;
 }
@@ -25,6 +26,10 @@
 .location-city-list:hover
 {
     color:aqua;
+}
+.location-address
+{
+    font-size:4vh;
 }
 .location-movie
 {
@@ -74,4 +79,59 @@
 .location-time:hover
 {
     background-color:crimson;
+}
+
+.location-input
+{
+    border:none;
+    background-color:pink;
+    width:4vw;
+}
+
+.location-input-button
+{
+    background-color:maroon;
+    border:2px solid pink;
+    border-radius:50px;
+    color:pink;
+    font-weight:bold;
+    width:2.5vw;
+    cursor:pointer;
+}
+.location-input-button:hover
+{
+    background-color:pink;
+    border-color:maroon;
+    color:maroon;
+}
+
+.location-select-button
+{
+    background-color:maroon;
+    border:2px solid pink;
+    border-radius: 5px;
+    color:pink;
+    cursor:pointer;
+}
+
+.location-select-button:hover
+{
+    background-color:pink;
+    border-color: maroon;
+    color:maroon;
+}
+
+.location-label
+{
+    width:8vw;
+    color:maroon;
+    font-size:1.5vw;
+}
+
+.location-data
+{
+    width:30vw;
+    color:crimson;
+    font-size:1.5vw;
+    font-style:italic;
 }
