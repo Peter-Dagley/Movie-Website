@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import LocationCity from './LocationCity.js'
 
 const LocationSelect = (props) => {

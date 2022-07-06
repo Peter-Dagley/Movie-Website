@@ -30,19 +30,21 @@ const LocationCity = (props) => {
 
     if (page === 'booking')
     {
-        return <LocationBooking session={session} prices={props.prices} />
+        return <LocationBooking movies={movies} location={location} session={session} prices={props.prices} />
     }
     else
     {
         return  (
             <div align="center">
-                {location.city}
+                <div className="location-city-title">{location.city}</div>
+                <div className="location-address">{location.address}</div>
+                <div></div>
                 {tsessions.map
                 (sessions =>
                     (
                     <table className="location-movie-details" cellPadding="5" cellSpacing="0" border="2">
                     <tr>
-                        <td><img src={require('../../Images/' + sessions.movie + '.jpg')} height="200vh" width="140vw"></img></td>
+                        <td><img src={require('../../Images/' + sessions.movie + '.jpg')} height="200vh" width="140vw" alt={sessions.movie}></img></td>
                         <td>
                             <table>
                             <tr><td><strong>{movies[sessions.movie].title}</strong></td></tr>
