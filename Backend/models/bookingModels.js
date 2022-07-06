@@ -6,8 +6,9 @@ const bookingSchema = new Schema
     {
         'location': Number,
         'date': String,
-        'screen': Number,
+        'cinema': Number,
         'seat': String,
+        'time' : String,
         'reference': String
     }
 );
