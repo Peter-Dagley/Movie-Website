@@ -7,17 +7,25 @@ chai.use(chaiHttp);
 const server = require("../index.js");
 
 // Replies Tests
-describe("Replies API Testing", () => {
+mocha.describe("Replies API Testing", () => {
     
-    it("gets /replies/readReplies list", (done) => {
+    console.log("test started5");
+
+    mocha.it("gets /replies/readReplies list", (done) => {
+        
         chai
             .request(server)
             .get("/replies/readReplies")
             .end((err, res) => {
                 chai.expect(err).to.be.null;
                 chai.expect(res.body).to.have.lengthOf(1);
+                chai.expect(res.body[0]).to.include({
+                    "_id": 1,
+                    "content": [],
+                    "__v": 0
+                });
             });
         return done();
     })
-
+    after(() => {server.close();}); 
 })

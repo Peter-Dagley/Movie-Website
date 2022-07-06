@@ -7,9 +7,11 @@ chai.use(chaiHttp);
 const server = require("../index.js");
 
 // Locations Tests
-describe("Location API Testing", () => {
+mocha.describe("Location API Testing", () => {
+
+    console.log("test started2");
     
-    it("gets /locationlist list", (done) => {
+    mocha.it("gets /locationlist list", (done) => {
         chai
             .request(server)
             .get("/locationlist")
@@ -20,7 +22,7 @@ describe("Location API Testing", () => {
         return done();
     })
 
-    it("gets location by id", (done) => {
+    mocha.it("gets location by id", (done) => {
         let id = 206;
         chai
             .request(server)
@@ -261,4 +263,5 @@ describe("Location API Testing", () => {
             });
         return done();
     })
+    after(() => {server.close();});
 })

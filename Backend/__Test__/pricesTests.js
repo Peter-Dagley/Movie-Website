@@ -7,9 +7,11 @@ chai.use(chaiHttp);
 const server = require("../index.js");
 
 // Prices Tests
-describe("Prices API Testing", () => {
+mocha.describe("Prices API Testing", () => {
+
+    console.log("test started4");
     
-    it("gets /prices list", (done) => {
+    mocha.it("gets /prices list", (done) => {
         chai
             .request(server)
             .get("/prices")
@@ -19,5 +21,5 @@ describe("Prices API Testing", () => {
             });
         return done();
     })
-
+    after(() => {server.close();});
 })
