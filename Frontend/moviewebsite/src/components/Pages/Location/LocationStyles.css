@@ -1,0 +1,147 @@
+.location-page
+{
+    height:90vh;
+}
+.location-list
+{
+    height:90vh;
+    overflow:auto;
+}
+.location-movie-list
+{
+    height:90vh;
+    overflow:auto;
+}
+.location-city-title
+{
+    color:maroon;
+    text-shadow:2px 2px skyblue;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:4vw;
+}
+.location-city-list
+{
+    background-color:transparent;
+    border:none;
+    color:blue;
+    font-family:verdana;
+    font-size:3vw;
+    cursor:pointer
+}
+.location-city-list:hover
+{
+    color:aqua;
+}
+.location-address
+{
+    font-size:4vh;
+}
+.location-movie
+{
+    background-color:transparent;
+    border:none;
+    color:black;
+    width:20vw;
+}
+.location-times
+{
+    background-color:transparent;
+    border:none;
+    color:grey;
+    width:30vw;
+}
+
+.location-button
+{
+    background-color:pink;
+    border:2px solid purple;
+    border-radius:5px;
+    color:purple;
+    cursor:pointer;
+}
+.location-button:hover
+{
+    border-color:pink;
+    background-color:purple;
+    color:pink;
+}
+
+.location-movie-details
+{
+    width:40%;
+}
+
+.location-time
+{
+    border:none;
+    background-color:maroon;
+    border-radius:5px;
+    color:skyblue;
+    margin:0.5vw;
+    width:7vw;
+    cursor:pointer;
+}
+.location-time:hover
+{
+    background-color:crimson;
+}
+
+.location-input
+{
+    border:none;
+    background-color:pink;
+    width:4vw;
+}
+
+.location-input-button
+{
+    background-color:maroon;
+    border:2px solid pink;
+    border-radius:50px;
+    color:pink;
+    font-weight:bold;
+    width:2.5vw;
+    cursor:pointer;
+}
+.location-input-button:hover
+{
+    background-color:pink;
+    border-color:maroon;
+    color:maroon;
+}
+
+.location-select-button
+{
+    background-color:maroon;
+    border:2px solid pink;
+    border-radius: 5px;
+    color:pink;
+    cursor:pointer;
+}
+
+.location-select-button:hover
+{
+    background-color:pink;
+    border-color: maroon;
+    color:maroon;
+}
+
+.location-label
+{
+    width:8vw;
+    color:maroon;
+    font-size:1.5vw;
+}
+
+.location-data
+{
+    width:30vw;
+    color:pink;
+    font-size:1.5vw;
+    font-style:italic;
+}
+
+.location-message
+{
+    color:skyblue
+}

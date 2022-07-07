@@ -1,0 +1,6 @@
+db.bookings.insertMany([
+{"type":"adult", "price":5.50}
+{"type":"child","price":3.50}
+{"type":"student","price":2.50}
+{"type":"oap","price":2.00}
+])

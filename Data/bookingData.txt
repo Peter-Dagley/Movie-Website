@@ -1,0 +1,50 @@
+db.bookings.insertMany([
+{
+    "location":201,
+    "date":"2022-06-22",
+    "cinema":1,
+    "seat":"A3",
+    "time":"11:00 AM",
+    "reference":"1234567890"
+},
+{
+    "location":201,
+    "date":"2022-06-22",
+    "cinema":1,
+    "seat":"A4",
+    "time":"11:00 AM",
+    "reference":"1234567890"
+},
+{
+    "location":201,
+    "date":"2022-06-22",
+    "cinema":1,
+    "seat":"B9",
+    "time":"11:00 AM",
+    "reference":"1234567891"
+},
+{
+    "location":201,
+    "date":"2022-06-30",
+    "cinema":1,
+    "seat":"A9",
+    "time":"11:00 AM",
+    "reference":"1234567891"
+},
+{
+    "location":202,
+    "date":"2022-06-23",
+    "cinema":3,
+    "time":"2:00 PM",
+    "seat":"C4",
+    "reference":"1234567895"
+},
+{
+    "location":202,
+    "date":"2022-06-23",
+    "screen":4,
+    "time":"4:00 PM",
+    "seat":"D2",
+    "reference":"1234567896"
+}
+])
