@@ -12,7 +12,7 @@ This is a simple Cinema website developed using React for frontend functionality
 Running the website is relatively simple, but has a few requirements once being cloned from this Git Repository.
 
 ### Dependencies
-This application requires node.js for the Backend, and can be installed here: https://nodejs.org/en/download/
+This application requires node.js for the Backend, and can be installed here: https://nodejs.org/en/download/ 
 
 In the /Frontend/moviewebsite/ folder, in a command line, run the following commands to install the dependencies:
 
