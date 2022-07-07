@@ -27,7 +27,7 @@ In the /Backend/ folder,:
 If unsure, you can always check the package.json files in each respective folder to check what dependencies are needed.
 
 ### Data
-Data for each collection can be found in JSON format in the /Data/ folder. This can be imported into MongoDB, which is the required database for this website and can be found and installed here: https://www.mongodb.com/try/download/community
+Data for each collection can be found in JSON format in the /Data/ folder. These can be imported into MongoDB, which is the required database for this website and can be found and installed here: https://www.mongodb.com/try/download/community
 
 ### Starting Up
 To start the database, navigate to /Backend/, and in a command line there run:
