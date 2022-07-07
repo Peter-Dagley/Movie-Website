@@ -10,7 +10,7 @@ const DiscussionBoard = () => {
       <div className='container-lg'>
           
           <div className='container' id='header'>
-            <h1 className='text1'>Discussion Board</h1>
+            <h1 className='primary'>Discussion Board</h1>
           </div>
 
           <br></br>
@@ -21,7 +21,7 @@ const DiscussionBoard = () => {
           </div>
 
           <div className='container'>
-            <h2 className='text1'>Leave a Comment</h2>
+            <h2 className='primary'>Leave a Comment</h2>
             <ReplyInput />
           </div>
 
