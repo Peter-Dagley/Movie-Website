@@ -1,129 +1,118 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Moment from 'moment'
-import LocationBooking from './LocationBooking'
-import LocationCity from './LocationCity'
+import LocationBooking from './LocationBooking.js'
+import LocationCity from './LocationCity.js'
+import Location from './Location.js'
 
-const LocationConfirm = ({movies, booking, session, location, prices}) =>{
+const LocationConfirm = ({movies, booking, payment, session, location, prices}) =>{
 
     const [confirm, setConfirm] = useState(<div></div>)
     const [page, setPage] = useState('')
 
-    const addBooking = (booking) => 
-    {
-        /*
-            Add the booking
-        */
-        axios.post("http://localhost:4000/booking/add", {content: booking})
-        .then
-            ((response) => 
-                {
-                    console.log('Booking  Status (Ref: ' + booking.reference + ') ' + response.statusText)
-                }
-            )
-        .catch
-            ((error) => 
-                {
-                    console.log('Error LocationConfirm() booking/add: ' + error)
-                }
-            )
-    }
-
-    const getBookings = () => 
+    const findBooking = (booking) =>
     {
     /*
-        Check to see if the booking already exists
+            Check to see if booking exists, using location, date, cinema, time and seat
     */
-        axios.get("http://localhost:4000/bookings")
-        .then
-        ((response) => 
-            {
-                let bookinglist = []
-                let book = {location:'', date:'', cinema:'', time:'', seat:'', adults:'', children:''}
+            let key = booking.location.id + '*' + booking.date + '*' + booking.cinema + '*' + booking.time + '*' + booking.seat
             
-                for (let i in response.data)
+            axios.get("http://localhost:4000/booking/find/" + key)
+            .then
+            ((response) => 
                 {
-                    book.location   = response.data[i].location
-                    book.date       = response.data[i].date
-                    book.cinema     = response.data[i].cinema
-                    book.time       = response.data[i].time
-                    book.seat       = response.data[i].seat
-                    book.adults     = response.data[i].adults
-                    book.children   = response.data[i].children
-  
-                    if (!bookinglist[book.location])
+                    if (response.data.status)
                     {
-                        bookinglist[book.location] = []
+                        setConfirm
+                            (
+                            <div>
+                                <div className="location-message">Booking already exists, click 'back' for a new booking</div>
+                                <div>
+                                    <input type="button" className="location-button" value="back" onClick={() => {setPage('booking')}}></input>
+                                    <input type="button" className="location-button" value="new location" onClick={() => {setPage('location')}}></input>
+                                  </div>
+                            </div>
+                            )
                     }
-                    if (!bookinglist[book.location][book.date])
+                    else
                     {
-                        bookinglist[book.location][book.date] = []
-                    }
-                    if (!bookinglist[book.location][book.date][book.cinema])
-                    {
-                        bookinglist[book.location][book.date][book.cinema] = []
-                    }
-                    if (!bookinglist[book.location][book.date][book.cinema][book.time])
-                    {
-                        bookinglist[book.location][book.date][book.cinema][book.time] = []
-                    }
-  
-                    bookinglist[book.location][book.date][book.cinema][book.time][book.seat] = response.data[i]
-                }
+                        setPage('')
 
-                let valid = true
- 
-                if (bookinglist[booking.location.id])
-                {    
-                    if (bookinglist[booking.location.id][booking.date])
-                    {
-                        if (bookinglist[booking.location.id][booking.date][booking.cinema])
-                        {
-                            if (bookinglist[booking.location.id][booking.date][booking.cinema][booking.time])
-                            {
-                                if (bookinglist[booking.location.id][booking.date][booking.cinema][booking.time][booking.seat])
-                                {
-                                    valid = false
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (valid === false)
-                {
-                    setConfirm
-                    (
-                        <div>
-                            <div>Booking already exists, click 'back' for a new booking</div>
-                            <div><input type="button" className="location-button" value="back" onClick={() => {setPage('booking')}}></input></div>
-                        </div>
-                    )
-                }
-                else
-                {   
-                    setPage('')
-
-                    addBooking
+                        addBooking
                             ( 
                                 {"location":booking.location.id
                                 ,"date":booking.date
                                 ,"cinema":booking.cinema
                                 ,"time":booking.time
                                 ,"seat":booking.seat
-                                ,"reference":booking.location.city + booking.date + booking.time + booking.seat
+                                ,"reference":booking.location.city + '#' + booking.movie.title + '#' + booking.date + '#' + booking.time + '#' + booking.seat
                                 }
                             )
-                    
-                    setConfirm(<div><div>Booking confirmed Enjoy the movie</div><div><input type="button" className="location-button" value="new booking" onClick={() => {setPage('new')}}></input></div></div>)
+
+                        addPayment(payment)
+                            
+                        setConfirm
+                            (
+                                <div>
+                                    <div className="location-message">Booking confirmed Enjoy the movie</div>
+                                    <div>
+                                        <input type="button" className="location-button" value="new booking" onClick={() => {setPage('new')}}></input>
+                                        <input type="button" className="location-button" value="new location" onClick={() => {setPage('location')}}></input>
+                                    </div>
+                                </div>
+                            )
+                    }
                 }
+            )
+            .catch
+            ((error) => 
+                {
+                    console.log('Error LocationConfirm() booking/find/' + key + ': ' + error)
+                }
+            )       
+    }
+
+    const addBooking = (booking) => 
+    {
+    /*
+        Add the booking
+    */
+        axios.post("http://localhost:4000/booking/add", {content: booking})
+        .then
+        ((response) => 
+            {
+                console.log('Booking Status ' + response.statusText)
+            }
+        )
+        .catch
+        ((error) => 
+            {
+                console.log('Error LocationConfirm() booking/add: ' + error)
+            }
+        )
+    }
+
+    const addPayment = () =>
+    {
+        console.log('add payment')
+        axios.post("http://localhost:4000/payment/add", {content: payment})
+        .then
+        ((response) => 
+            {
+                console.log('Booking Status ' + response.statusText)
+            }
+        )
+        .catch
+        ((error) => 
+            {
+                console.log('Error LocationPayment() payment/add: ' + error)
             }
         )
     }
 
     useEffect(() => 
     {
-        getBookings()
+        findBooking(booking)
     }, [])
 
 
@@ -134,6 +123,11 @@ const LocationConfirm = ({movies, booking, session, location, prices}) =>{
     else if(page === 'new')
     {
         return <LocationCity movies={movies} location={location} prices={prices} />
+
+    }
+    else if(page === 'location')
+    {
+        return <Location movies={movies} location={location} prices={prices} />
 
     }
     else
