@@ -7,11 +7,25 @@ const bookingSchema = new Schema
         'location': Number,
         'date': String,
         'cinema': Number,
-        'seat': String,
         'time' : String,
+        'seat': String,
+        'reference': String
+    }
+);
+
+const paymentSchema = new Schema 
+(
+    {
+        'adults': Number,
+        'children': String,
+        'date': String,
+        'time' : String,
+        'card': Number,
+        'amount': Number,
         'reference': String
     }
 );
 
 const Booking = mongoose.model('Booking', bookingSchema);
+const Payment = mongoose.model('Payment', paymentSchema);
 module.exports = Booking;
