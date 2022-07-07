@@ -21,12 +21,14 @@ const locationRouter = require("./routes/locationRoutes");
 const movieRouter = require("./routes/movieRoutes");
 const priceRouter = require("./routes/priceModels");
 const repliesRouter = require("./routes/repliesModels");
+const paymentRouter = require("./routes/paymentRoutes");
 
 app.use("/", bookingRouter);
 app.use("/", locationRouter);
 app.use("/", movieRouter);
 app.use("/", priceRouter);
 app.use("/", repliesRouter);
+app.use("/", paymentRouter);
 
 mongoose.connect
 (uri, opts,
