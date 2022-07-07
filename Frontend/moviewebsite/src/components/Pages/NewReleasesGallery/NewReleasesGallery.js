@@ -8,13 +8,13 @@ const NewReleasesGallery = () => {
       <div className='container-lg'>
           
           <div className='container' id='header'>
-            <h1 className='text1'>New Releases</h1>
+            <h1 className='primary'>New Releases</h1>
           </div>
 
           <br></br>
 
           <div className='container'>
-            <h2 className='text1'></h2>
+            <h2 className='primary'></h2>
             <NewReleasesAPI />
             
           </div>
