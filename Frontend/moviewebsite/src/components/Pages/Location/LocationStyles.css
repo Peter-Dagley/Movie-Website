@@ -7,6 +7,11 @@
     height:90vh;
     overflow:auto;
 }
+.location-movie-list
+{
+    height:90vh;
+    overflow:auto;
+}
 .location-city-title
 {
     color:maroon;
@@ -131,7 +136,12 @@
 .location-data
 {
     width:30vw;
-    color:crimson;
+    color:pink;
     font-size:1.5vw;
     font-style:italic;
+}
+
+.location-message
+{
+    color:skyblue
 }

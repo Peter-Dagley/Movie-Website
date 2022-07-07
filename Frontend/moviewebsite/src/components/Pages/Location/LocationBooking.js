@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Moment from 'moment'
-import LocationConfirm from './LocationConfirm'
+import LocationPayment from './LocationPayment.js'
 
 const LocationBooking = ({movies, location, session, prices}) => {
 
@@ -113,7 +113,7 @@ const LocationBooking = ({movies, location, session, prices}) => {
 
     if (page === 'confirm')
     {
-        return <LocationConfirm movies={movies} booking={booking} session={session} location={location} prices={prices} />
+        return <LocationPayment movies={movies} booking={booking} session={session} location={location} prices={prices} />
     }
     else
     {
@@ -167,7 +167,7 @@ const LocationBooking = ({movies, location, session, prices}) => {
                 </tr>
                 <tr><td>&nbsp;</td></tr>
                 <tr><td colSpan="100%"><input type="button" className="location-button" value="confirm booking" onClick={ValidateBooking}></input></td></tr>
-                <tr><td colSpan="100%">{message}</td></tr>
+                <tr><td className="location-message" colSpan="100%">{message}</td></tr>
             </table>
         </div>
     )
