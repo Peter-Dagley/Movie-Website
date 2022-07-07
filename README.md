@@ -1,4 +1,8 @@
 # Movie Website
+
+## Authors
+Peter Dagley, Kim Wong and Naima Afrah.
+
 ## Introduction
 This is a simple Cinema website developed using React for frontend functionality, and Express and Node for the backend database and APIs.
 
