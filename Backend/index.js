@@ -17,11 +17,12 @@ let opts = { useNewUrlParser: true }
 
 // Routes
 const bookingRouter = require("./routes/bookingRoutes");
+const paymentRouter = require("./routes/paymentRoutes");
 const locationRouter = require("./routes/locationRoutes");
 const movieRouter = require("./routes/movieRoutes");
-const priceRouter = require("./routes/priceModels");
-const repliesRouter = require("./routes/repliesModels");
-const paymentRouter = require("./routes/paymentRoutes");
+const priceRouter = require("./routes/priceRoutes");
+const repliesRouter = require("./routes/repliesRoutes");
+
 
 app.use("/", bookingRouter);
 app.use("/", locationRouter);
