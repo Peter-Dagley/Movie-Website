@@ -15,9 +15,6 @@ const NewReleasesAPI = () => {
             });
     };
 
-    // Deconstructing Data Object
-    const {id, title} = data;
-
     useEffect(() => {
         getNewReleasesAPI()
     }, [])
@@ -27,7 +24,7 @@ const NewReleasesAPI = () => {
         <>
         {data.map(({id, title}) =>
         <div key={id} id={id} className='card'>
-            <p>{id} {title}</p> 
+            <p>{title}</p> 
         </div>
          )}
         </>
