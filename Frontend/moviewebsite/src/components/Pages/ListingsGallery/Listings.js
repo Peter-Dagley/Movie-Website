@@ -30,8 +30,6 @@ const Listings = () => {
             getListings()
         }, [])
 
-        // Deconstructing Data Object
-        const {id1, title1} = search;
 
     // Page Display
     if(search==="") {
@@ -41,9 +39,9 @@ const Listings = () => {
             <input id='searchMovies' placeholder='Search for a movie...' onChange={(e) => getMovie(e.target.value)}/><br></br>
                 {data.map(({id, title, starring, genre, rating, thumbnail}) =>
                     <div key={id} id={id} className='card'>
-                        <div className='card-header'>
-                            <div className='card-header-title'>
-                                <p>{id} {title}</p>
+                        <div>
+                            <div className="movie-title">
+                                {title}
                             </div>
                         </div>
                         <div className='card-content'>
