@@ -8,12 +8,12 @@ const Home = () => {
     <>
     <div className='container-lg'>
         
-        <div className='container' id='header'>
-          <h1 className='text1'>QA Cinemas</h1>
+        <div className='container' id='header' align="center">
+          <h1 className='subtitle'>QA Cinemas</h1>
         </div>
           <div className="column">
-            <h3 className='primary'> Welcom to QA Cinema </h3>
-             <p className='primary'> Welcome to QA Cinema Home of the latest and greatest Blockbuster films right now.</p>
+            <h3 className='primary'> Welcome to QA Cinema </h3>
+             <p className='primary'> This is the Home of the latest and greatest Blockbuster films right now.</p>
             <br/>
       
               <div className="column" >
