@@ -1,6 +1,6 @@
 .location-page
 {
-    height:90vh;
+    height:80vh;
 }
 .location-list
 {
@@ -69,6 +69,7 @@
 .location-movie-details
 {
     width:40%;
+    color:darksalmon;
 }
 
 .location-time
@@ -129,7 +130,7 @@
 .location-label
 {
     width:8vw;
-    color:maroon;
+    color:fuchsia;
     font-size:1.5vw;
 }
 
