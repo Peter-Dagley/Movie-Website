@@ -13,19 +13,5 @@ const bookingSchema = new Schema
     }
 );
 
-const paymentSchema = new Schema 
-(
-    {
-        'adults': Number,
-        'children': String,
-        'date': String,
-        'time' : String,
-        'card': Number,
-        'amount': Number,
-        'reference': String
-    }
-);
-
 const Booking = mongoose.model('Booking', bookingSchema);
-const Payment = mongoose.model('Payment', paymentSchema);
 module.exports = Booking;

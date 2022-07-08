@@ -12,8 +12,8 @@ const paymentSchema = new Schema
         'amount': Number,
         'reference': String
     }
-);
+)
 
 
-const Payment = mongoose.model('Payment', paymentSchema);
-module.exports = Payment;
+const Payment = mongoose.model('Payment', paymentSchema)
+module.exports = Payment
