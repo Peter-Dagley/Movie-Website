@@ -35,6 +35,14 @@ for (let i in ids)
       }
     </AliceCarousel>
 
+    <table>
+      <tr><td className="location-label" colSpan="100%">PRICES</td></tr>
+      <tr><td className="location-label">adult</td><td className="location-data">£{window.prices['adult'].toFixed(2)}</td></tr>
+      <tr><td className="location-label">child</td><td className="location-data">£{window.prices['child'].toFixed(2)}</td></tr>
+      <tr><td className="location-label">student</td><td className="location-data">£{window.prices['student'].toFixed(2)}</td></tr>
+      <tr><td className="location-label">senior</td><td className="location-data">£{window.prices['oap'].toFixed(2)}</td></tr>
+    </table>
+
     <Link className='link' to="/location">Book Your Tickets</Link>
   </div>
   )
