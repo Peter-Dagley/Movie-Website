@@ -22,12 +22,12 @@ const LocationSelect = (props) => {
             {
                 if (side === 'right')
                 {
-                    movielist.push(<table><tr><td>{movie.title}</td><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')} alt={movie.title}></img></td></tr></table>)
+                    movielist.push(<table><tr><td className="location-data">{movie.title}</td><td><img height="300vh" width="500vw" src={require('../../Images/' + movie.id + '.jpg')} alt={movie.title}></img></td></tr></table>)
                     side = 'left'
                 }
                 else
                 {
-                    movielist.push(<table><tr><td><img height="300vh" width="150vw" src={require('../../Images/' + movie.id + '.jpg')} alt={movie.title}></img></td><td>{movie.title}</td></tr></table>)
+                    movielist.push(<table><tr><td><img height="300vh" width="500vw" src={require('../../Images/' + movie.id + '.jpg')} alt={movie.title}></img></td><td className="location-data">{movie.title}</td></tr></table>)
                     side = 'right'
                 }
             }
@@ -48,7 +48,8 @@ const LocationSelect = (props) => {
     {
         return (
         <div align="center">
-            <select onChange={(event) => {setLocation(locations[event.target.value]);setPage('city')}}>
+            <h1 className="subtitle">Location</h1>
+            <select className="location-button" onChange={(event) => {setLocation(locations[event.target.value]);setPage('city')}}>
                 <option value="">Please select a city</option>
                 {locations.map
                     ((location) =>
@@ -58,7 +59,7 @@ const LocationSelect = (props) => {
                     )
                 }
             </select>
-            <div>
+            <div className="location-page">
                 {movielist.map
                     ((movie) =>
                         (

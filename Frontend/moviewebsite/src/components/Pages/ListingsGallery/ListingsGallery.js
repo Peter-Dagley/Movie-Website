@@ -7,8 +7,8 @@ const ListingsGallery = () => {
     <div className='container-fluid'>
       <div className='container-lg'>
           
-          <div className='container' id='header'>
-            <h1 className='primary'>Listings Gallery</h1>
+          <div className='container' id='header' align="center">
+            <h1 className='subtitle'>Listings Gallery</h1>
           </div>
 
           <div className='container' id='header'>

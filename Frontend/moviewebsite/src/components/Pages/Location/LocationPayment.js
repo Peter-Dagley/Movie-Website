@@ -38,11 +38,11 @@ const LocationPayment = ({movies, booking, session, location, prices}) =>
                 (
                     {'adults': booking.adults
                     ,'children': booking.children
-                    ,'date': Moment().format('YYYY-MMM-DD')
+                    ,'date': Moment().format('YYYY-MMM-DD').toUpperCase()
                     ,'time' : Moment().format('HH:MM')
                     ,'card': cardInput
                     ,'amount': booking.total
-                    ,'reference': booking.reference
+                    ,'reference': booking.location.city + '#' + booking.movie.title + '#' + booking.date + '#' + booking.time + '#' + booking.seat
                     }
                 )
 

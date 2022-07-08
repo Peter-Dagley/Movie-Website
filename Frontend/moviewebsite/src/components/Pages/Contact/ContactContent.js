@@ -3,25 +3,38 @@ import './ContactStyles.css';
 
 
 const Contact = () => {
-  return <div>
-    <h1 className='primary'> Contact Page</h1>
+  return <div align="center">
+    <h1 className='subtitle'> Contact Page</h1>
     <p className='primary'>Welcome to our contact page, please feel free to contact us for any enquiries</p>
 
    
     <h2 className='primary'>Contact us via email</h2>
     <form action="https://submit-form.com/jEKHvH5d">
-  <label for="name" className='primary'>Name</label>
-  <input type="text" id="name" name="name" placeholder="Name" required="" />
-  <label for="email" className='primary'>Email</label>
-  <input type="email" id="email" name="email" placeholder="Email" required="" />
-  <label for="message" className='primary'>Message</label>
-  <textarea
-    id="message"
-    name="message"
-    placeholder="Message"
-    required=""
-  ></textarea>
-  <button type="submit" className='primary'>Send</button>
+      <table>
+        <tr>
+            <td><label for="name" className='primary'>Name</label></td>
+            <td><input type="text" id="name" name="name" placeholder="Name" required="" /></td>
+        </tr>
+        <tr>
+          <td><label for="email" className='primary'>Email</label></td>
+          <td><input type="email" id="email" name="email" placeholder="Email" required="" /></td>
+        </tr>
+        <tr>
+          <td><label for="message" className='primary'>Message</label></td>
+          <td>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Message"
+              required=""
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><button type="submit" className='button'>Send</button></td>
+        </tr>
+      </table>
+  
 </form>
 <br/>
 

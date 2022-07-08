@@ -59,11 +59,43 @@ router.post
     {
         let booking = request.body.content
 
-        console.log('booking location' + booking.locationi)
-
     	Booking.create(booking)
-      	.then((result) => res.status(201).send(result))
+      	.then((result) => response.status(201).send(result))
       	.catch((error) => console.log('Error booking/add ' + error))
+    }
+)
+
+router.get
+('/booking/find/:key', function(request, response)
+    {
+        let key = request.params.key.split('*')
+        let location = key[0]
+        let date = key[1]
+        let cinema = key[2]
+        let time = key[3]
+        let seat = key[4]
+
+        Booking.find
+        ({'location':location, 'date':date, 'cinema':cinema, 'time':time, 'seat':seat}, (error, booking) =>
+            {
+                if (error)
+                {
+                    console.log('Error booking find/' + key + ':' + error)
+                    response.send({"status":"Error booking/find/" + key + ": " + error})
+                }
+                else
+                {
+                    if (booking == '')
+                    {
+                        response.send({"status":false})
+                    }
+                    else
+                    {
+                        response.send({"status":true})
+                    }
+                }
+            }
+        )
     }
 )
 

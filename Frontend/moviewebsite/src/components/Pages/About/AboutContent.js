@@ -8,7 +8,7 @@ const AboutContent = () => {
             <div class="row">
                 <div class="col">
                     <center>
-                        <h2 className='primary'> About QA Cinema </h2>
+                        <h1 className='subtitle'> About QA Cinema </h1>
 
                         <p className= 'primary'> The four fantastic founders of QA Cinema, Naima Afrah, Salma Hassan, Peter Dagley, Kim Wong formed the company in June 2022.
 

@@ -42,7 +42,7 @@ const LocationCity = (props) => {
                 {tsessions.map
                 (sessions =>
                     (
-                    <table className="location-movie-details" cellPadding="5" cellSpacing="0" border="2">
+                    <table className="location-movie-details" cellPadding="5" cellSpacing="0" bordercolor="black" border="2">
                     <tr>
                         <td><img src={require('../../Images/' + sessions.movie + '.jpg')} height="200vh" width="140vw" alt={sessions.movie}></img></td>
                         <td>
