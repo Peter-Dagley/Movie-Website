@@ -8,8 +8,9 @@ import "./ScreensStyles.css"
 
 const Screens = () => {
   return (
-    <div className="page" align="center">
-      
+ 
+  <div align="center">
+   <h1 className="subtitle">Screens</h1>
    <h3> Screen 1 - Standard</h3>
    <img src={ScreenImg1} alt='Screen-1' width="600" height="500" /><br/>
    <br/>
