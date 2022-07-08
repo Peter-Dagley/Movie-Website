@@ -7,8 +7,8 @@ const ClassificationsContent = () => {
       <div className='container-fluid'>
         <div className='container-lg'>
 
-          <div className='container' id='header'>
-            <h1 className='primary'>Classifications</h1>
+          <div className='container' id='header'align="center">
+            <h1 className='subtitle'>Classifications</h1>
           </div>
 
           <br></br>
