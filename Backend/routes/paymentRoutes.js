@@ -15,8 +15,6 @@ router.post
             ,'reference':booking.reference
             }
 
-        console.log('payment ' + payment)
-
     	Payment.create(payment)
       	.then((result) => response.status(201).send(result))
       	.catch((error) => console.log('Error payment/add ' + error))
