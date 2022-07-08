@@ -24,6 +24,7 @@ for (let i in ids)
 
   return (
     <div className="slide-container" align="center">
+      <h1 className="subtitle">Ticket Bookings</h1>
     <AliceCarousel autoPlay infinite autoplayInterval="5000">
       {images.map
         ((image) =>
