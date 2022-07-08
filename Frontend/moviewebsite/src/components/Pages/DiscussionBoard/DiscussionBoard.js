@@ -9,14 +9,14 @@ const DiscussionBoard = () => {
     <div className='container-fluid'>
       <div className='container-lg'>
           
-          <div className='container' id='header'>
-            <h1 className='primary'>Discussion Board</h1>
+          <div className='container' id='header' align="center">
+            <h1 className='subtitle'>Discussion Board</h1>
           </div>
 
           <br></br>
 
           <div className='container'>
-            <h2 className='text1'>Posts</h2>
+            <h2 className='primary'>Posts</h2>
             <ReplyOutput />
           </div>
 
